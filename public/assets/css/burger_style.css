@@ -1,0 +1,57 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	position: relative;
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 2em;
+}
+
+body:after {
+	content : "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url(../img/burger.png);
+	background-size: cover;
+	background-repeat:no-repeat;
+	width: 100%;
+	min-height: 100vh;
+	opacity : 0.3;
+	z-index: -1;
+}
+
+.jumbotron {
+    background-position: center;
+	margin-top: 10px;
+	text-align: center;
+}
+
+
+#newburger {
+    border-radius: 5px;
+}
+
+#color-override {
+    color: black;
+}
+
+#lefthead {
+    background-color: #5c6db8;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+#eatbutton, #trashbutton {
+    float: right;
+}
+
+#righthead {
+    background-color: #c23816;
+    color: white;
+    text-align: center;
+    font-size: 1.2em;
+}
