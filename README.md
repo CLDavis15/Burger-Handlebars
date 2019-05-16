@@ -6,5 +6,3 @@
 •	SQL was used to handle all of the burger data. 
 •	Responsible for all aspects of the project. 
 
-
-![alt text](https://github.com/CLDavis15/Burger-Handlebars/public/assets/img/screen-shot.jpeg)
