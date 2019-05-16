@@ -7,4 +7,4 @@
 •	Responsible for all aspects of the project. 
 
 
-![alt text](https://github.com/CLDavis15/Burger-Handlebars/public/assets/img/screen-shot.png)
+![alt text](https://github.com/CLDavis15/Burger-Handlebars/public/assets/img/screen-shot.jpeg)
