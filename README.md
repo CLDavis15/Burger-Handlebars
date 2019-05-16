@@ -1,10 +1,10 @@
 # Burger-Handlebars
 
+•	Burger Eating App is a Full Stack Web application where users can CREATE new burgers and ‘devour’ burgers 
+•	The UI was built with HTML5, styled with CSS3, while also utilizing Handlebars as a templating engine. 
+•	Express.js was used to handle routing, GET routes would pull the burger data, POST routes allowed the user to create new burgers, PUT routes allowed the user to update whether the burger was devoured or not, and DELETE allowed the user to delete burgers. 
+•	SQL was used to handle all of the burger data. 
+•	Responsible for all aspects of the project. 
 
-Eat-Da-Burger! is a restaurant app that lets users input the names of burgers they'd like to eat.
 
-Whenever a user submits a burger's name, the app will display the burger on the left side of the page -- waiting to be devoured.
-
-Each burger in the waiting area also has a Devour it! button. When the user clicks it, the burger will move to the right side of the page to show that is has been eaten.
-
-The app will store every burger in a database, whether devoured or not.
+![alt text](https://github.com/CLDavis15/Burger-Handlebars/public/assets/img/screen-shot.png)
