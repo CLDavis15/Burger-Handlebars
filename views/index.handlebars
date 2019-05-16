@@ -1,20 +1,7 @@
 
 <div class="container">
 
-    <div class="jumbotron">
-        <h1 id="color-override">Eat Da Burger</h1>
-        <br>
-        <h2 id="color-override">Create A Burger!</h2>
-        <panel>
-            <form class="create-form">
-                <div class="form-group">
-                    <input type="text" id="newburger" name="burger">
-                    
-                    <button type="submit" class="btn btn-success" id="addburger"> Add Burger!</button>
-                </div>
-            </form>
-        </panel>
-    </div>
+        <h1> Eat Da Burger</h1>
 
     <div class="row">
         <!-- Undevoured Burgers -->
@@ -23,11 +10,13 @@
                 <div class="panel-heading" id="lefthead"><strong>Burger List:</strong></div>
                 <div class="panel-body">
                     <ul>
-                        {{#each burgers}}
-                            {{#unless devoured}}
-                                <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
-                                <button type="button" class="eatburger btn btn-warning" id ="eatbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class="fa fa-cutlery"></span></button>
+                        {{#each burgers}} {{#unless devoured}}
+                                {{this.burger_name}}
+                                <button class="btn btn-warning" data-id="{{this.id}}" data-newdevour="{{devoured}}"><span class="fa fa-cutlery"></span>
+                                {{#if devoured}}{{else}}{{/if}}
+                                </button>
                                 <hr>
+                                <button class="btn btn-danger" data-id="{{this.id}}"><span class="fa fa-trash"></span></button>
                             {{/unless}}
                         {{/each}}
                     </ul>
@@ -37,14 +26,13 @@
         <!-- Devoured Burgers -->
         <div class="col-sm-6">
             <div class="panel panel-default">
-                <div class="panel-heading" id="righthead"><strong>Devoured Burgers</strong></div>
+                <div class="panel-heading" id="righthead"><strong>Devoured Burgers:</strong></div>
                 <div class="panel-body">
                     <ul>
-                        {{#each burgers}}
-                            {{#if devoured}}
-                                <span><strong> {{this.id}} - {{this.burger_name}} </strong></span>
-                                <button type="button" class="trashburger btn btn-danger" id ="trashbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}"><span class="fa fa-trash"></span></button>
-                                <hr>
+                        {{#each burgers}} {{#if devoured}}
+                               {{this.burger_name}}
+                               <hr>
+                                <button class="btn btn-danger" data-id="{{this.id}}"><span class="fa fa-trash"></span></button>
                             {{/if}}
                         {{/each}}
                     </ul>
@@ -52,3 +40,76 @@
             </div>
         </div>
     </div>
+
+
+      <h2 id="color-override">Create A Burger!</h2>
+        <panel>
+            <form class="create-form">
+                <div class="form-group">
+                    <input type="text" id="ca" name="name">
+                    
+                    <button type="submit" class="btn btn-success"> Add Burger!</button>
+                </div>
+            </form>
+        </panel>
+    </div>
+
+<script>
+
+    $(function() {
+        $(".btn.btn-warning").on("click", function (event) {
+            var id = $(this).data("id");
+            var newDevour = !parseInt($(this).data("devoured"));
+
+            var newDevourState = {
+                devoured: newDevour
+            };
+
+            $.ajax("/api/burgers/" + id, {
+                type: "PUT",
+                data: newDevourState
+            }).then(
+                function() {
+                    console.log("change devour to", newDevour);
+
+                    location.reload();
+                });
+        });
+    });
+
+    $(".create-form").on("submit", function(event) {
+        event.preventDefault();
+
+        var newBurger = {
+            name: $("#ca").val().trim(),
+            devoured: 0
+        };
+        $.ajax(
+            {url: "/api/burgers", 
+            method: "POST",
+            data: newBurger
+        }).then(
+            function() {
+                console.log("created a new burger");
+
+                location.reload();
+        });
+    });
+
+    $(".btn.btn-danger").on("click", function(event) {
+        var id = $(this).data("id");
+        console.log("click");
+
+        $.ajax({
+            url: "/api/burgers/" + id, 
+            method: "DELETE"
+        }).then(
+            function() {
+                console.log("Deleted Burger" + id);
+
+                location.reload();
+    });
+});
+
+     
+</script>
